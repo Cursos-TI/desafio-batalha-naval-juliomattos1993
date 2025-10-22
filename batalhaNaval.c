@@ -12,17 +12,36 @@ int main() {
     }
 
     // Coordenadas dos navios
-    int linhaH = 2, colH = 4;
-    int linhaV = 5, colV = 7;
+    // Dois horizontais/verticais + dois diagonais
 
-    // Posiciona navio horizontal
+    // Navio horizontal
+    int linhaH = 1, colH = 2;
     for (j = 0; j < 3; j++) {
-        tabuleiro[linhaH][colH + j] = 3;
+        if (colH + j < 10)
+            tabuleiro[linhaH][colH + j] = 3;
     }
 
-    // Posiciona navio vertical
+    // Navio vertical
+    int linhaV = 5, colV = 7;
     for (i = 0; i < 3; i++) {
-        tabuleiro[linhaV + i][colV] = 3;
+        if (linhaV + i < 10)
+            tabuleiro[linhaV + i][colV] = 3;
+    }
+
+    // Navio diagonal principal (↘)
+    int linhaD1 = 3, colD1 = 3;
+    for (i = 0; i < 3; i++) {
+        if (linhaD1 + i < 10 && colD1 + i < 10)
+            if (tabuleiro[linhaD1 + i][colD1 + i] == 0)
+                tabuleiro[linhaD1 + i][colD1 + i] = 3;
+    }
+
+    // Navio diagonal secundária (↙)
+    int linhaD2 = 2, colD2 = 8;
+    for (i = 0; i < 3; i++) {
+        if (linhaD2 + i < 10 && colD2 - i >= 0)
+            if (tabuleiro[linhaD2 + i][colD2 - i] == 0)
+                tabuleiro[linhaD2 + i][colD2 - i] = 3;
     }
 
     // Exibe o tabuleiro
